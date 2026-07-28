@@ -1,0 +1,23 @@
+__pycache__/
+*.pyc
+*.pyo
+
+.env
+*.pem
+
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+venv/
+.venv/
+
+# Model weights and training checkpoints — code in Models/*/ ships,
+# but anything produced by running train.py locally should not.
+Models/*/model/
+Models/*/*_model/
+Models/*/checkpoints*/
+Models/*/*.pt
+Models/*/*.safetensors
+Models/*/*.bin

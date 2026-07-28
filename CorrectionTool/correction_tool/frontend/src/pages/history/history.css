@@ -1,0 +1,139 @@
+:root {
+  --bg: #ffffff;
+  --fg: #333333;
+  --subtle: #666666;
+  --border: #dddddd;
+  --accent: #4caf50;
+  --font: "Arial", sans-serif;
+}
+
+.analytics-container {
+  max-width: 80vw;
+  min-width: 50vw;
+  margin: 40px auto;
+  padding: 1.5rem;
+  background: var(--bg);
+  font-family: var(--font);
+  color: var(--fg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+.analytics-container h1 {
+  margin-bottom: 1rem;
+  font-size: 1.75rem;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.controls label {
+  color: var(--subtle);
+}
+
+.controls select {
+  padding: 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: #f9f9f9;
+  width: fit-content;
+  cursor: pointer;;
+}
+
+.no-data {
+  color: var(--subtle);
+  font-style: italic;
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.overview {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.stat {
+  flex: 1;
+  text-align: center;
+}
+
+.stat .label {
+  font-size: 0.9rem;
+  color: var(--subtle);
+  margin-bottom: 0.25rem;
+}
+
+.stat .value {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.progress {
+  background: #f0f0f0;
+  border-radius: 4px;
+  overflow: hidden;
+  height: 1em;
+  margin-top: 0.5em;
+  min-width: 100px;
+  height: 20px;
+}
+
+.progress.small {
+  height: 0.8em;
+}
+
+.progress-bar {
+  height: 100%;
+  background: var(--accent);
+  padding-right: 0.25em;
+  line-height: 1em;
+  font-size: 0.75em;
+  color: #fff;
+  white-space: nowrap;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  padding-left: 5px;
+  font-weight: 700;
+}
+
+h2 {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.users-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.user-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.user-item:first-child {
+  border-top: none;
+}
+
+.user-name {
+  flex: 1;
+  font-weight: 500;
+}
+
+.count {
+  width: 2rem;
+  text-align: right;
+  color: var(--fg);
+}
