@@ -16,7 +16,7 @@ See **"Understanding these results"** below for the for how we got these numbers
 
 ## How this was run
 
-The first 500 `(source_text, llm_extracted_json)` pairs were pulled from a larger internal corpus of already-extracted recipes. This sample is saved at `data/eval_sample_500.json`. Each pair was run through all 5 pipeline stages (`verification/validator.py`), and the per-document results were aggregated into the totals above.
+The first 500 `(source_text, llm_extracted_json)` pairs were pulled from a larger internal corpus of already-extracted recipes. The sample is not included in this repository (see "Data availability" in `README.md`); `data/eval_sample.json` holds one row of it to show the format. Each pair was run through all 5 pipeline stages (`verification/validator.py`), and the per-document results were aggregated into the totals above.
 
 ### Notes on stage 5
 
@@ -25,9 +25,11 @@ Stage 5 depends on a fine-tuned relation-extraction model (DeBERTa-v3-large) and
 **A note on reproducibility.** Trained model weights are not included in this repository - only the training and inference code is included. A reader following this repository's README instructions to train their own `ingredient_ner`/`relation_extraction` models would obtain a freshly-trained pair of models, comparable in kind but not numerically identical to the ones used to produce the figures in this document.
 
 ## Reproducing this
+The 500-recipe sample is not distributed. With your own file of `(text, extracted)` pairs in the shape of `data/eval_sample.json`, the same command applies:
 ```bash
-python run_pipeline.py --input data/eval_sample_500.json --output results_500.json
+python run_pipeline.py --input your_pairs.json --output results.json
 ```
+The one-row sample runs end to end (once the models are trained) as a dry run: `python run_pipeline.py --input data/eval_sample.json`.
 
 ---
 

@@ -12,6 +12,22 @@ No trained weights ship with this repository. You must train the three models un
 
 See `CASE_WALKTHROUGH.md` for a worked example of the full detection + resolution loop running on a single recipe, end to end.
 
+## Data availability
+
+Our scraped recipe corpus, and everything derived from it, is not included in this repository. What ships is a one-row sample of each input, to show the format and let you dry-run the pipeline:
+
+- `data/eval_sample.json` - a single `(source text, extracted JSON)` pair.
+- `data/vocab/cleaned_ingredients_n_v2.txt` - two hand-written entries in the vocabulary format. With only these, stage 2 flags almost every ingredient and stage 3 has weight bounds for almost none, so those two stages are a format demo until you supply a full vocabulary.
+
+Not included:
+
+- **The full ingredient vocabulary** (stages 2 and 3). It is described in our paper: https://ceur-ws.org/Vol-3882/ifow-4.pdf. Build your own in the format of the sample file, or request ours (below).
+- **The 500-recipe evaluation sample** behind `RESULTS.md`. Those numbers cannot be reproduced without it; `RESULTS.md` documents how they were produced.
+- **The auto-corrector's corrections database** (`data/corrections_db.jsonl`, only read when `AUTO_CORRECT_ENABLED=true`). It is JSON Lines with one record per human correction: `recipe_id`, `source_text_snippet`, `original_error_path`, `patch`, and `context_embedding` (the `thenlper/gte-large` embedding of the snippet). Without the file the auto-corrector does nothing. You can build one from corrections recorded in the correction tool (section 6).
+- **The recipe-card JSONs** for training the semantic-coherence model (section 1, `suspicious_ingredient`).
+
+To request any of the above, email foodcomputing.ashoka@gmail.com, saransh.gupta@ashoka.edu.in, or armaan.shah@alumni.ashoka.edu.in.
+
 ## Setup
 
 ```
@@ -25,7 +41,7 @@ Fill in `.env` as needed (see the environment variable table below). Only `LLM_P
 
 ## 1. Getting training data
 
-We have not included our training data with this repository. However, we use publicly avaible datasets, with minor augmentations. 
+We have not included our training data with this repository (see "Data availability" above). `ingredient_ner` and `relation_extraction` use publicly available datasets with minor augmentations; `suspicious_ingredient` needs recipe-card JSONs of the shape described below, which you must supply.
 
 ### `ingredient_ner` - needs a CoNLL-format NER file
 
@@ -100,7 +116,7 @@ Notes:
 The pipeline verifies **pairs** of `(source_text, llm_extracted_json)` - it does not do the LLM extraction itself. You need to bring both halves:
 
 - `text`: the raw recipe article/page text the extraction was drawn from.
-- `extracted`: the LLM's JSON output for that text, matching the schema in `verification/schema.py` (see `examples/sample_input.json` for a minimal valid example, and `data/vocab/cleaned_ingredients_n_v2.txt` for the vocabulary stage 2 checks against).
+- `extracted`: the LLM's JSON output for that text, matching the schema in `verification/schema.py` (see `examples/sample_input.json` for a minimal valid example and `data/eval_sample.json` for a real-shaped one; `data/vocab/cleaned_ingredients_n_v2.txt` is a two-entry sample of the vocabulary stage 2 checks against).
 
 Input file shape for `run_pipeline.py`:
 
@@ -225,7 +241,8 @@ Change this password (or add real accounts via the signup form) before using the
 - `config.py` - environment-variable-driven paths and settings.
 - `verification/` - the 5-stage pipeline, recipe schema, and the LLM provider abstraction.
 - `Models/` - one subdirectory per model, each with `inference.py` and (where applicable) `prepare_dataset.py` / `train.py`.
-- `data/vocab/` - the ingredient vocabulary stage 2 checks against.
+- `data/vocab/` - a two-entry sample of the ingredient vocabulary stages 2 and 3 use.
+- `data/eval_sample.json` - a one-row sample input for `run_pipeline.py`.
 - `examples/` - a minimal valid `run_pipeline.py` input fixture.
 - `CorrectionTool/correction_tool/` - the human-in-the-loop correction web app.
 - `CASE_WALKTHROUGH.md` - a worked example of the detection + resolution pipeline on one recipe.

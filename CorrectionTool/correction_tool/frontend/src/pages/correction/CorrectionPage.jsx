@@ -23,6 +23,7 @@ export default function CorrectionPage({ username, projectName, setCompletionDat
 
   const [correctedJson, setCorrectedJson] = useState(null)
   const [correctionLog, setCorrectionLog] = useState([])
+  const [dismissedFlags, setDismissedFlags] = useState([])
   const [highlightedText, setHighlightedText] = useState("")
   const [highlightMatches, setHighlightMatches] = useState([])
   const [currentMatchIndex, setCurrentMatchIndex] = useState(0)
@@ -235,22 +236,64 @@ export default function CorrectionPage({ username, projectName, setCompletionDat
     return result
   }
 
+  const isDismissed = (error) => dismissedFlags.some(f => f.field === error.field)
+
+  const flagsAt = (path) => {
+    const matching = (pageData.detected_errors || []).filter(error =>
+      error.field === path || path.includes(error.field)
+    )
+    return {
+      active: matching.find(error => !isDismissed(error)),
+      dismissed: matching.find(error => isDismissed(error)),
+    }
+  }
+
+  const rebuildCorrectedJson = (log) => {
+    const rebuilt = JSON.parse(JSON.stringify(pageData.extracted_json))
+    log.forEach(c => {
+      if (c.is_new_field) {
+        createFieldPath(rebuilt, c.field, c.corrected_value)
+      } else {
+        setFieldValue(rebuilt, c.field, c.corrected_value)
+      }
+    })
+    return rebuilt
+  }
+
+  const handleRemoveCorrection = (index) => {
+    const newLog = correctionLog.filter((_, i) => i !== index)
+    setCorrectionLog(newLog)
+    setCorrectedJson(rebuildCorrectedJson(newLog))
+  }
+
+  const handleDismissFlag = (flag) => {
+    setDismissedFlags(prev => [...prev, {
+      field: flag.field,
+      error_type: flag.error_type,
+      suggested: flag.source_value,
+      evidence: evidenceText,
+      timestamp: new Date().toISOString(),
+    }])
+    setSelectedField("")
+    setEvidenceText("")
+  }
+
+  const handleRestoreFlag = (field) => {
+    setDismissedFlags(prev => prev.filter(f => f.field !== field))
+  }
+
   const renderJsonField = (obj, path = '') => {
     if (typeof obj !== 'object' || obj === null) {
-      const isDetectedError = pageData.detected_errors?.some(error => 
-        error.field === path || path.includes(error.field)
-      )
-      const detectedError = pageData.detected_errors?.find(error => 
-        error.field === path || path.includes(error.field)
-      )
-      
+      const { active: detectedError, dismissed: dismissedError } = flagsAt(path)
+      const isDetectedError = !!detectedError
+
       const isChanged = correctionLog.some(log => log.field === path)
-      
+
       return (
-        <span 
-          className={`json-value ${isDetectedError ? 'detected-error' : ''} ${isChanged ? 'field-changed' : ''} ${selectedField === path ? 'field-selected' : ''}`}
+        <span
+          className={`json-value ${isDetectedError ? 'detected-error' : ''} ${!isDetectedError && dismissedError ? 'flag-dismissed' : ''} ${isChanged ? 'field-changed' : ''} ${selectedField === path ? 'field-selected' : ''}`}
           onClick={() => handleFieldClick(path, obj)}
-          title={detectedError ? `Detected Error: ${detectedError.error_type}, Suggested: ${detectedError.source_value}` : ''}
+          title={detectedError ? `Detected Error: ${detectedError.error_type}, Suggested: ${detectedError.source_value}` : (dismissedError ? 'Flag dismissed as a false positive' : '')}
         >
           {typeof obj === 'string' ? `"${obj}"` : String(obj)}
         </span>
@@ -277,17 +320,13 @@ export default function CorrectionPage({ username, projectName, setCompletionDat
         {'{'}
         {Object.entries(obj).map(([key, value], index, arr) => {
           const fieldPath = path ? `${path}.${key}` : key
-          const isDetectedError = pageData.detected_errors?.some(error => 
-            error.field === fieldPath || fieldPath.includes(error.field)
-          )
-          const detectedError = pageData.detected_errors?.find(error => 
-            error.field === fieldPath || fieldPath.includes(error.field)
-          )
-          
+          const { active: detectedError, dismissed: dismissedError } = flagsAt(fieldPath)
+          const isDetectedError = !!detectedError
+
           return (
             <div key={key} className="json-field">
-              <span 
-                className={`json-key ${isDetectedError ? 'detected-error' : ''}`}
+              <span
+                className={`json-key ${isDetectedError ? 'detected-error' : ''} ${!isDetectedError && dismissedError ? 'flag-dismissed' : ''}`}
                 title={detectedError ? `Detected Error: ${detectedError.error_type}` : ''}
               >
                 "{key}"
@@ -416,6 +455,7 @@ export default function CorrectionPage({ username, projectName, setCompletionDat
       extracted_json: pageData.extracted_json,
       corrected_json: correctedJson,
       correction_log: correctionLog,
+      dismissed_flags: dismissedFlags,
       detected_errors: pageData.detected_errors,
       id: pageData.id,
       username: username,
@@ -428,6 +468,7 @@ export default function CorrectionPage({ username, projectName, setCompletionDat
         alert("Document saved successfully")
         await fetchData()
         setCorrectionLog([])
+        setDismissedFlags([])
       } else {
         alert("Failed to save document")
       }
@@ -443,6 +484,7 @@ export default function CorrectionPage({ username, projectName, setCompletionDat
       extracted_json: pageData.extracted_json,
       corrected_json: pageData.extracted_json,
       correction_log: [],
+      dismissed_flags: dismissedFlags,
       detected_errors: pageData.detected_errors,
       id: pageData.id,
       username: username,
@@ -455,6 +497,7 @@ export default function CorrectionPage({ username, projectName, setCompletionDat
         alert("Document marked as correct")
         await fetchData()
         setCorrectionLog([])
+        setDismissedFlags([])
       } else {
         alert("Failed to mark document as correct")
       }
@@ -609,6 +652,22 @@ export default function CorrectionPage({ username, projectName, setCompletionDat
                 </div>
               )}
 
+              {!isCreatingNewField && selectedField && flagsAt(selectedField).active && (
+                <div className="dismiss-box">
+                  <div>
+                    <strong>Pipeline flag:</strong> {flagsAt(selectedField).active.error_type}
+                    {flagsAt(selectedField).active.source_value ? ` (suggested: ${flagsAt(selectedField).active.source_value})` : ''}
+                  </div>
+                  <InteractionButton
+                    text="Dismiss Flag (false positive)"
+                    onButtonPress={() => handleDismissFlag(flagsAt(selectedField).active)}
+                    color="#6c757d"
+                    fcolor={"white"}
+                    width="100%"
+                  />
+                </div>
+              )}
+
               <div className="field-group">
                 <label>Error Type:</label>
                 <select 
@@ -709,13 +768,26 @@ export default function CorrectionPage({ username, projectName, setCompletionDat
                   <div key={index} className="correction-item">
                     <strong>{correction.field}</strong> - {correction.error_type}
                     {correction.is_new_field && <span className="new-field-badge">NEW</span>}
+                    <button className="log-remove-btn" onClick={() => handleRemoveCorrection(index)}>Remove</button>
                     <br />
                     <span className="correction-change">
-                      {correction.is_new_field 
+                      {correction.is_new_field
                         ? `Added: "${correction.corrected_value}"`
                         : `"${correction.original_value}" → "${correction.corrected_value}"`
                       }
                     </span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="correction-log">
+                <h4>Dismissed Flags ({dismissedFlags.length})</h4>
+                {dismissedFlags.map((flag) => (
+                  <div key={flag.field} className="correction-item">
+                    <strong>{flag.field}</strong> - {flag.error_type}
+                    <button className="log-remove-btn" onClick={() => handleRestoreFlag(flag.field)}>Restore</button>
+                    <br />
+                    <span className="correction-change">Marked as a false positive</span>
                   </div>
                 ))}
               </div>

@@ -1,0 +1,282 @@
+[
+  {
+    "text": "Sweet Spicy & Tangy Vegetarian Thai Green Curry Recipe With Tamarind In association with Dabur (A Science based Ayurveda Company) Archana's Kitchen On Sunday, 16 October 2016 16:58 4.9184741959611 2674 5 0 2674 ratings. Thai curry is a quintessential dish of Thailand which has got adapted in different forms in various regions across the world. The strong flavors coming out of the lemon grass along with the Dabur Homemade Coconut milk and a myriad other ingredients is what makes this dish truly delectable. In this version of Vegetarian Thai Curry, we have made a subtle and delicious twist to the taste with the addition of a lot more vegetables and Dabur Homemade Tamarind Paste . Serve the Sweet Spicy & Tangy Vegetarian Thai Green Curry along with hot steamed Thai Jasmine Sticky Rice for a simple easy weeknight dinner or even when you have friends over for parties. Cuisine: Thai Course: Dinner Diet: Vegetarian Equipments Used: Preethi Blue Leaf Mixer Grinder, Small Saucepan With Handle (Tea/Sauces), Hard Anodised Kadai (Wok) Prep in 20 M Cooks in 30 M Total in 50 M Makes: 4 Servings Ingredients Ingredients to make the Thai Green Curry Paste 5 Stalks Lemongrass 3 cloves Garlic 1 inch Ginger 3 Green Chillies , roughly chopped 5 sprigs Coriander (Dhania) Leaves , roughly chopped 2 sprigs Basil leaves , roughly chopped 2 Stalks Spring Onion (Bulb & Greens) , roughly chopped 1 tablespoon Coriander (Dhania) Seeds , roasted 1 teaspoon Whole Black Peppercorns Salt , to taste Ingredients to make the Thai Green Curry 200 ml Dabur Homemade Coconut Milk 1 teaspoon Dabur Homemade Tamarind Paste , dissolved in 2 tablespoons water 1 Thai Green Curry paste , as mention above 1 cup Broccoli , cut into florets 5 Small Brinjal (Baingan / Eggplant) , cut into wedges 1/4 cup Button mushrooms , quartered 1 Red Bell pepper (Capsicum) , diced 1/2 Green zucchini , quartered or sliced 1 cup Vegetable stock 1 tablespoon Brown Sugar (Demerara Sugar) Basil leaves , or kaffir lime leaves Salt , to taste 1 teaspoon Oil , for cooking How to make Sweet Spicy & Tangy Vegetarian Thai Green Curry Recipe With Tamarind Method for Thai Green Curry Paste To prepare the lemongrass, we will first have to trim away and discard any root section below the bulb base. We will also now remove the dried part of the root until we reach a stage we know that the root cuts easily and is tender. We don't use the leaf part of the lemon grass for the curry paste, you can use it for flavoring a tea or a soup. Continue the same procedure for the remaining lemon grass stalks. Add all the ingredients for the paste into a blender and a little bit of water. Cover the blender and grind the mixture. After a few seconds of grinding, open the blender and stir to combine the ingredients and if required add a little more water to grind into a smooth paste. Method to make the Thai Green Curry Next we will proceed to make the Thai Curry with this paste. Heat a teaspoon of oil in a heavy wok. Add in the vegetables.  sprinkle in some salt and stir fry the vegetables on high heat until slightly tender. Once tender turn off the heat and keep aside. Add a teaspoon of oil into the hot wok, next add in 2 to 3 tablespoons of the thai curry paste and saute for a few seconds in the oil. Next add in a cup of water, the tamarind water and stir to combine into the curry. Next we will add in a tablespoon of brown sugar and finally 200 ml of the Dabur coconut milk. Stir to combine all the ingredients. Once combined, add in the salt, stir and allow the mixture to come to a thicken a little and come to a boil Once the mixture comes to a boil, add in the torn basil leaves and the stir fried vegetables. Stir the mixture, give it a light boil and the thai curry is ready to be served. Place a cup of steamed rice in a serving bowl. Pour the freshly cooked hot thai vegetarian thai curry on top of the rice until the rice soaks well into the curry and there is enough gravy to soup out and serve immediately to get the best flavors. Serve the Sweet Spicy & Tangy Vegetarian Thai Green Curry along with hot steamed Thai Jasmine Sticky Rice for a simple easy weeknight dinner or even when you have friends over for parties.",
+    "extracted": {
+      "recipe_name": "Sweet Spicy & Tangy Vegetarian Thai Green Curry",
+      "recipe_etymology": "NA",
+      "recipe_category": "Dinner",
+      "recipe_description": "Thai curry is a quintessential dish of Thailand. In this version of Vegetarian Thai Curry, a lot more vegetables and Dabur Homemade Tamarind Paste are added, making a subtle and delicious twist to the taste. Best served with hot steamed Thai Jasmine Sticky Rice for a simple easy weeknight dinner or even when having friends over for parties.",
+      "ingredient_substitution": {
+        "lemongrass": [
+          "lemon zest"
+        ],
+        "green chillies": [
+          "jalapeno"
+        ],
+        "coriander leaves": [
+          "cilantro"
+        ],
+        "spring onion": [
+          "scallion"
+        ],
+        "coriander seeds": [
+          "ground coriander"
+        ],
+        "coconut milk": [
+          "cashew cream"
+        ],
+        "brinjal": [
+          "eggplant"
+        ],
+        "button mushrooms": [
+          "shiitake mushrooms"
+        ],
+        "bell pepper": [
+          "capsicum"
+        ],
+        "zucchini": [
+          "summer squash"
+        ],
+        "vegetable stock": [
+          "chicken stock",
+          "water"
+        ],
+        "brown sugar": [
+          "coconut sugar"
+        ],
+        "basil leaves": [
+          "kaffir lime leaves"
+        ],
+        "oil": [
+          "ghee"
+        ]
+      },
+      "serving_pattern": "NA",
+      "place_of_origin": "NA",
+      "cuisine": "Thai",
+      "mealtime": "Dinner",
+      "suitable_for_course": "NA",
+      "dietary_practice": "Vegetarian",
+      "dish_subcategory": "NA",
+      "ingredients": [
+        {
+          "heading": "All Ingredients",
+          "items": [
+            {
+              "ingredient": "lemongrass",
+              "description": "a tropical grass with a strong lemon fragrance, used as a herb in cooking.",
+              "form": "stalks",
+              "size": "na",
+              "quantity": 5.0,
+              "unit": "stalks",
+              "estimated_weight_in_grams": 50.0
+            },
+            {
+              "ingredient": "garlic",
+              "description": "a pungent bulb composed of several smaller bulbs, used for seasoning.",
+              "form": "cloves",
+              "size": "na",
+              "quantity": 3.0,
+              "unit": "cloves",
+              "estimated_weight_in_grams": 15.0
+            },
+            {
+              "ingredient": "ginger",
+              "description": "a knobby, pungent rhizome often used in asian cuisine.",
+              "form": "inch",
+              "size": "na",
+              "quantity": 1.0,
+              "unit": "inch",
+              "estimated_weight_in_grams": 25.0
+            },
+            {
+              "ingredient": "green chillies",
+              "description": "small, green, and spicy peppers often used in south asian cuisine.",
+              "form": "na",
+              "size": "na",
+              "quantity": 3.0,
+              "unit": "count",
+              "estimated_weight_in_grams": 15.0
+            },
+            {
+              "ingredient": "coriander leaves",
+              "description": "also known as cilantro, these are the leaves of the coriander plant, used as an herb in cooking.",
+              "form": "sprigs",
+              "size": "na",
+              "quantity": 5.0,
+              "unit": "sprigs",
+              "estimated_weight_in_grams": 25.0
+            },
+            {
+              "ingredient": "basil leaves",
+              "description": "fragrant green leaves used as a seasoning in cooking.",
+              "form": "teaspoon",
+              "size": "na",
+              "quantity": 1.0,
+              "unit": "teaspoon",
+              "estimated_weight_in_grams": 2.0
+            },
+            {
+              "ingredient": "spring onion",
+              "description": "a variety of onion that has a small bulb and tall, thin green leaves, often used as a garnish.",
+              "form": "stalks",
+              "size": "na",
+              "quantity": 2.0,
+              "unit": "stalks",
+              "estimated_weight_in_grams": 20.0
+            },
+            {
+              "ingredient": "coriander seeds",
+              "description": "the dried seeds of the coriander plant, used as a spice in cooking.",
+              "form": "tablespoons",
+              "size": "na",
+              "quantity": 1.0,
+              "unit": "tablespoon",
+              "estimated_weight_in_grams": 6.0
+            },
+            {
+              "ingredient": "whole black peppercorns",
+              "description": "the dried, unripe berries of a flowering vine used as a pungent spice in cooking.",
+              "form": "teaspoons",
+              "size": "na",
+              "quantity": 1.0,
+              "unit": "teaspoon",
+              "estimated_weight_in_grams": 2.0
+            },
+            {
+              "ingredient": "salt",
+              "description": "a crystalline compound often used to enhance the flavor of foods.",
+              "form": "na",
+              "size": "na",
+              "quantity": 2.0,
+              "unit": "teaspoons",
+              "estimated_weight_in_grams": 12.0
+            },
+            {
+              "ingredient": "dabur homemade coconut milk",
+              "description": "a liquid made from the grated flesh of mature coconuts.",
+              "form": "ml",
+              "size": "na",
+              "quantity": 200.0,
+              "unit": "ml",
+              "estimated_weight_in_grams": 200.0
+            },
+            {
+              "ingredient": "dabur homemade tamarind paste",
+              "description": "a tangy, seedless paste extracted from the tamarind fruit, used to add a sour taste to dishes.",
+              "form": "teaspoons",
+              "size": "na",
+              "quantity": 1.0,
+              "unit": "teaspoon",
+              "estimated_weight_in_grams": 6.0
+            },
+            {
+              "ingredient": "broccoli",
+              "description": "a cabbage of a variety similar to the cauliflower, bearing heads of green or purplish flower buds.",
+              "form": "cup",
+              "size": "na",
+              "quantity": 1.0,
+              "unit": "cup",
+              "estimated_weight_in_grams": 91.0
+            },
+            {
+              "ingredient": "brinjal",
+              "description": "a glossy, purple vegetable, often considered a type of eggplant.",
+              "form": "cup",
+              "size": "na",
+              "quantity": 1.0,
+              "unit": "cup",
+              "estimated_weight_in_grams": 82.0
+            },
+            {
+              "ingredient": "button mushrooms",
+              "description": "small, round mushrooms often used in cooking.",
+              "form": "cup",
+              "size": "na",
+              "quantity": 0.25,
+              "unit": "cup",
+              "estimated_weight_in_grams": 40.0
+            },
+            {
+              "ingredient": "bell pepper",
+              "description": "a fruit of the capsicum plant with a mild to sweet flavor, often used in cooking.",
+              "form": "cup",
+              "size": "na",
+              "quantity": 1.0,
+              "unit": "cup",
+              "estimated_weight_in_grams": 149.0
+            },
+            {
+              "ingredient": "zucchini",
+              "description": "a variety of summer squash with tender, edible skin and seeds.",
+              "form": "cup",
+              "size": "na",
+              "quantity": 0.5,
+              "unit": "cup",
+              "estimated_weight_in_grams": 66.0
+            },
+            {
+              "ingredient": "vegetable stock",
+              "description": "a flavored liquid base for making soups, stews, or sauces using vegetables.",
+              "form": "cup",
+              "size": "na",
+              "quantity": 1.0,
+              "unit": "cup",
+              "estimated_weight_in_grams": 240.0
+            },
+            {
+              "ingredient": "brown sugar",
+              "description": "a type of sugar with a strong molasses flavor, often used in cooking and baking.",
+              "form": "tablespoon",
+              "size": "na",
+              "quantity": 1.0,
+              "unit": "tablespoon",
+              "estimated_weight_in_grams": 12.0
+            },
+            {
+              "ingredient": "oil",
+              "description": "a viscous liquid used for cooking or flavoring, often derived from plants or seeds.",
+              "form": "teaspoon",
+              "size": "na",
+              "quantity": 1.0,
+              "unit": "teaspoon",
+              "estimated_weight_in_grams": 4.67
+            }
+          ]
+        }
+      ],
+      "serving_size": {
+        "form": "servings",
+        "size": "NA",
+        "description": "The quantity of food typically served at one time.",
+        "quantity": 4.0,
+        "unit": "servings",
+        "estimated_weight_in_grams": "NA"
+      },
+      "recipe_difficulty": "NA",
+      "total_time": "50 M",
+      "cook_time": "30 M",
+      "prep_time": "20 M",
+      "ferment_time": "NA",
+      "cooking_techniques": "NA",
+      "cooking_vessels": [
+        "blender",
+        "wok"
+      ],
+      "kitchen_tools": [
+        "small saucepan",
+        "blender"
+      ],
+      "knife_cuts": "NA",
+      "flavor": "Sweet, Spicy, Tangy",
+      "texture": "NA",
+      "taste": "NA",
+      "recipe_notes": "NA",
+      "additional_trivia": "In association with Dabur, this recipe features Dabur Homemade Tamarind Paste and Dabur Homemade Coconut Milk.",
+      "related_recipes": "NA",
+      "additional_tips": "Best served with hot steamed Thai Jasmine Sticky Rice for a simple easy weeknight dinner or even when you have friends over for parties.",
+      "recipe_id": "HFO:IND-AK-P01-0004171",
+      "recipe_url": "https://www.archanaskitchen.com/sweet-spicy-tangy-vegetarian-thai-green-curry-recipe-with-tamarind"
+    }
+  }
+]

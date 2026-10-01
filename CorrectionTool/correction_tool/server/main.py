@@ -286,6 +286,7 @@ def add_corrected_document():
         "$set": {
             "corrected_json": content["corrected_json"],
             "correction_log": content["correction_log"],
+            "dismissed_flags": content.get("dismissed_flags", []),
             "corrected_by": content["username"],
             "corrected_at": datetime.now(timezone.utc),
             "corrected": True,
@@ -424,7 +425,7 @@ def review_correction():
         update_result = data_collection.update_one(
             {"id": document_id},
             {"$unset": {
-                "corrected_json": "", "correction_log": "", "corrected_by": "", "corrected_at": "",
+                "corrected_json": "", "correction_log": "", "dismissed_flags": "", "corrected_by": "", "corrected_at": "",
                 "corrected": "", "approved": "", "approved_by": "", "approved_at": "",
             }},
         )

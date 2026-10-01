@@ -17,8 +17,14 @@ from Models.relation_extraction.inference import extract_pairs_from_text
 from verification.auto_correct import apply_auto_corrections
 from verification.schema import NON_ESSENTIAL_FIELDS, RECIPE_SCHEMA
 
+if not config.VOCAB_PATH.exists():
+    raise FileNotFoundError(
+        f"Ingredient vocabulary not found at {config.VOCAB_PATH}. Set MMFOOD_VOCAB_PATH or see 'Data availability' in README.md."
+    )
 with open(config.VOCAB_PATH, "r", encoding="utf-8") as f:
     VOCABULARY = ast.literal_eval(f.read())
+if not VOCABULARY:
+    raise ValueError(f"Ingredient vocabulary at {config.VOCAB_PATH} is empty; stages 2 and 3 need at least one entry.")
 
 VOCABULARY_INGREDIENTS = {item["ingredient"] for item in VOCABULARY}
 
