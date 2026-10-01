@@ -13,10 +13,10 @@ CORRECTIONS_DB_PATH = Path(os.environ.get(
 ))
 
 NER_MODEL_DIR = Path(os.environ.get(
-    "MMFOOD_NER_MODEL_DIR", MODELS_ROOT / "ingredient_ner" / "model"
+    "MMFOOD_NER_MODEL_DIR", MODELS_ROOT / "ingredient_ner" / "out" / "model-best"
 ))
 RE_MODEL_DIR = Path(os.environ.get(
-    "MMFOOD_RE_MODEL_DIR", MODELS_ROOT / "relation_extraction" / "finetuned_re_model"
+    "MMFOOD_RE_MODEL_DIR", MODELS_ROOT / "relation_extraction" / "checkpoints" / "finetuned_re_model"
 ))
 SUSPICIOUS_MODEL_PATH = Path(os.environ.get(
     "MMFOOD_SUSPICIOUS_MODEL_PATH", MODELS_ROOT / "suspicious_ingredient" / "best_model_classification.pt"

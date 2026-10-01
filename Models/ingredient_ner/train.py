@@ -1,59 +1,31 @@
 import argparse
-import random
 from pathlib import Path
 
-import spacy
-from spacy.training import Example
-from spacy.tokens import DocBin
-from spacy.util import minibatch
-from tqdm import tqdm
+from spacy.cli.train import train
 
-LABELS = ["ING", "QUANTITY", "STATE", "UNIT", "PRODUCT"]
-
-
-def load_examples(nlp, path):
-    docbin = DocBin().from_disk(path)
-    docs = list(docbin.get_docs(nlp.vocab))
-    return [
-        Example.from_dict(doc, {"entities": [(ent.start_char, ent.end_char, ent.label_) for ent in doc.ents]})
-        for doc in docs
-    ]
+DEFAULT_CONFIG = Path(__file__).resolve().parent / "config.cfg"
 
 
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--data-dir", required=True)
-    parser.add_argument("--output-dir", required=True)
-    parser.add_argument("--n-iter", type=int, default=10)
-    parser.add_argument("--batch-size", type=int, default=8)
+    parser = argparse.ArgumentParser(description="Train the roberta-base spaCy NER model via `spacy train`.")
+    parser.add_argument("--data-dir", required=True, help="Directory holding train.spacy and test.spacy (from prepare_dataset.py).")
+    parser.add_argument("--output-dir", required=True, help="spaCy writes model-best/ and model-last/ here.")
+    parser.add_argument("--config", default=str(DEFAULT_CONFIG))
+    parser.add_argument("--gpu-id", type=int, default=0, help="-1 for CPU (very slow with a transformer).")
     args = parser.parse_args()
 
     data_dir = Path(args.data_dir)
-    nlp = spacy.blank("en")
+    Path(args.output_dir).mkdir(parents=True, exist_ok=True)
 
-    train_examples = load_examples(nlp, data_dir / "train.spacy")
-    test_examples = load_examples(nlp, data_dir / "test.spacy")
-
-    ner = nlp.add_pipe("ner")
-    for label in LABELS:
-        ner.add_label(label)
-    nlp.initialize(get_examples=lambda: train_examples)
-
-    optimizer = nlp.create_optimizer()
-    for i in range(args.n_iter):
-        random.shuffle(train_examples)
-        losses = {}
-        for batch in tqdm(list(minibatch(train_examples, size=args.batch_size)), desc=f"Epoch {i + 1}/{args.n_iter}"):
-            nlp.update(batch, sgd=optimizer, losses=losses)
-        print(f"Epoch {i + 1}: {losses}")
-
-    output_dir = Path(args.output_dir)
-    output_dir.mkdir(parents=True, exist_ok=True)
-    nlp.to_disk(output_dir)
-    print(f"Saved model to {output_dir}")
-
-    scorer = nlp.evaluate(test_examples)
-    print(scorer)
+    train(
+        args.config,
+        output_path=args.output_dir,
+        use_gpu=args.gpu_id,
+        overrides={
+            "paths.train": str(data_dir / "train.spacy"),
+            "paths.dev": str(data_dir / "test.spacy"),
+        },
+    )
 
 
 if __name__ == "__main__":

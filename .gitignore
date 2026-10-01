@@ -16,6 +16,7 @@ venv/
 # Model weights and training checkpoints — code in Models/*/ ships,
 # but anything produced by running train.py locally should not.
 Models/*/model/
+Models/*/out/
 Models/*/*_model/
 Models/*/checkpoints*/
 Models/*/*.pt

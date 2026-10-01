@@ -8,7 +8,7 @@ A 5-stage pipeline for verifying LLM-extracted recipe JSON against its source te
 4. **Semantic coherence** - a Set Transformer over ingredient embeddings flags ingredients that don't belong.
 5. **Source fidelity** - NLI + relation extraction + rule-based graph alignment check whether the extracted quantities/forms/existence are entailed by the source text.
 
-No trained weights ship with this repository. You must train the three models under `Models/` before the pipeline will run end to end (stages 4 and 5 will error without them; stages 1–3 only need the vocabulary file already included under `data/vocab/`).
+No trained weights ship with this repository. You must train the three models under `Models/` before the pipeline will run end to end (the pipeline will error without them).
 
 See `CASE_WALKTHROUGH.md` for a worked example of the full detection + resolution loop running on a single recipe, end to end.
 
@@ -74,7 +74,9 @@ Run in this order - `suspicious_ingredient`'s dataset prep imports the trained `
 ```bash
 # --- ingredient_ner ---
 python -m Models.ingredient_ner.prepare_dataset --conll path/to/your.conll --output-dir data/ingredient_ner --augment --add-negatives
-python -m Models.ingredient_ner.train --data-dir data/ingredient_ner --output-dir Models/ingredient_ner/model
+python -m Models.ingredient_ner.train --data-dir data/ingredient_ner --output-dir Models/ingredient_ner/out
+# wraps `spacy train` with Models/ingredient_ner/config.cfg (roberta-base + spaCy NER head, 20k steps, GPU).
+# roberta-base is fetched from Hugging Face on first run. Best checkpoint lands in Models/ingredient_ner/out/model-best.
 
 # --- relation_extraction ---
 python -m Models.relation_extraction.prepare_dataset --tasteset-csv path/to/TASTEset.csv --output Models/relation_extraction/re_train_data.jsonl
